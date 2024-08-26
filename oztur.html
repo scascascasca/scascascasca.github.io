@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Üöğğöööztur</title>
+</head>
+<body>
+    <button onclick="playVideo()">Play</button>
+    <video id="myVideo" style="display:none;">
+        <source src="oztur1.mp4" type="video/mp4">
+        Tarayıcınız video elementini desteklemiyor.
+    </video>
+
+    <script>
+        function playVideo() {
+            var video = document.getElementById("myVideo");
+            video.currentTime = 0; // Videoyu başa sar
+            video.play(); // Videoyu çal
+        }
+    </script>
+</body>
+</html>

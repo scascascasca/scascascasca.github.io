@@ -12,38 +12,37 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0; /* Sayfa arka plan rengi */
+            background-color: #f0f0f0;
         }
 
         #playButton {
-            background-color: #4CAF50; /* Buton arka plan rengi */
+            background-color: #4CAF50;
             border: none;
             color: white;
-            padding: 20px 40px; /* Butonun üst-alt ve sağ-sol iç boşlukları */
+            padding: 20px 40px;
             text-align: center;
             text-decoration: none;
             display: inline-block;
-            font-size: 24px; /* Buton yazı boyutu */
+            font-size: 24px;
             margin: 4px 2px;
             cursor: pointer;
-            border-radius: 8px; /* Buton köşe yuvarlama */
-            transition: background-color 0.3s, transform 0.3s; /* Geçiş efekti */
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
         #playButton:hover {
-            background-color: #45a049; /* Hover durumunda butonun arka plan rengi */
-            transform: scale(1.1); /* Hover durumunda butonun büyüme efekti */
+            background-color: #45a049;
+            transform: scale(1.1);
         }
 
         audio {
-            display: block;
-            margin: 20px 0; /* Audio etrafında boşluk */
+            display: none;
         }
     </style>
 </head>
 <body>
     <button id="playButton" onclick="playAudio()">Play</button>
-    <audio id="myAudio" style="display:none;">
+    <audio id="myAudio">
         <source src="oztur1.mp3" type="audio/mp3">
         Tarayıcınız ses elementini desteklemiyor.
     </audio>
@@ -51,9 +50,14 @@
     <script>
         function playAudio() {
             var audio = document.getElementById("myAudio");
-            audio.currentTime = 0; // Ses dosyasını başa sar
-            audio.style.display = 'block'; // Ses öğesini göster
-            audio.play(); // Ses dosyasını çal
+            if (audio.paused) {
+                audio.currentTime = 0; // Ses dosyasını başa sar
+                audio.play().catch(error => {
+                    console.error("Ses çalınamadı: ", error);
+                }); // Ses dosyasını çal
+            } else {
+                audio.pause(); // Ses dosyasını durdur
+            }
         }
     </script>
 </body>

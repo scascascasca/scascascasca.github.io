@@ -50,14 +50,17 @@
     <script>
         function playAudio() {
             var audio = document.getElementById("myAudio");
-            if (audio.paused) {
-                audio.currentTime = 0; // Ses dosyasını başa sar
-                audio.play().catch(error => {
-                    console.error("Ses çalınamadı: ", error);
-                }); // Ses dosyasını çal
-            } else {
-                audio.pause(); // Ses dosyasını durdur
-            }
+
+            // Ses dosyasını sıfırla ve tekrar başlat
+            audio.currentTime = 0;
+            audio.play().catch(error => {
+                console.error("Ses çalınamadı: ", error);
+            });
+
+            // Butonun metnini her tıklamada "Play" olarak bırak
+            // Bu şekilde kullanıcıya sesin çalındığını gösterebiliriz.
+            var playButton = document.getElementById("playButton");
+            playButton.textContent = "Play"; // Buton metnini güncelle
         }
     </script>
 </body>
